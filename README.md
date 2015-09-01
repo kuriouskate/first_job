@@ -1,2 +1,2 @@
 # first_job
-Scripts created for my first company
+Scripts created by me for my first company
