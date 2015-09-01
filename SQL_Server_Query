@@ -1,0 +1,17 @@
+DECLARE @variable nvarchar(50)
+DECLARE CURSOR SCROLL MyCursor FOR select DISTINCT(followee) from following
+
+OPEN MyCursor
+FETCH NEXT FROM MyCursor INTO @variable
+WHILE @@FETCH_STATUS=0
+	
+	INSERT INTO #first (firstdegree)
+	SELECT follower
+	FROM following
+	WHERE followee=@variable
+FETCH NEXT FROM MyCursor INTO @variable
+END
+CLOSE MyCursor
+DEALLOCATE MyCursor
+SELECT *
+FROM answer
